@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Animation</title>
+  <style>
+    body {
+      height: 2000px; /* Large height for scrolling */
+    }
+    
+    .animated-element {
+      position: relative;
+      opacity: 0.5232;
+      transform: translateY(596px) scale(1.63573);
+      transition: transform 0.1s, opacity 0.1s;
+    }
+  </style>
+</head>
+<body>
+<section style="height: 100vh; width:100%; background-color: red;"></section>
+<section style="height: 100vh; width:100%; background-color: green;"></section>
+<section style="height: 100vh; width:100%; background-color: blue;"></section>
+  <div class="animated-element" style="height: 100px; width: 100px; background-color: red;">
+    Scroll me!
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(window).on("scroll", function() {
+      var scrollTop = $(window).scrollTop();
+      var elementTop = $('.animated-element').offset().top; // Find the top of the animated element
+      var windowHeight = $(window).height(); // Get window height
+      var maxScroll = 600; // Define the scroll range over which the animation occurs
+
+      // Check if the element is visible (i.e., user has scrolled to the section)
+      if (scrollTop + windowHeight > elementTop) {
+        var scrollFraction = Math.min((scrollTop + windowHeight - elementTop) / maxScroll, 1); // Calculate scroll fraction based on the element position
+        
+        // Calculate opacity and transform values based on scroll position
+        var opacity = 0.5232 + (0.9 - 0.5232) * scrollFraction;
+        var translateY = 596 - 596 * scrollFraction;
+        var scale = 1.63573 - (1.63573 - 1.02) * scrollFraction;
+
+        // Apply the styles to the element
+        $('.animated-element').css({
+          'opacity': opacity,
+          'transform': 'translateY(' + translateY + 'px) scale(' + scale + ')'
+        });
+      }
+    });
+  </script>
+</body>
+</html>

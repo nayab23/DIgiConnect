@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Collapsible List</title>
+    <style>
+        .mb-collapsible-content {
+    display: none;
+    margin-left: 20px;
+}
+
+.mb-collapsible-header {
+    cursor: pointer;
+    display: block;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.mb-collapsible-header:hover {
+    background-color: #e0e0e0;
+}
+
+
+    </style>
+</head>
+<body>
+
+<ul class="collapsible-list">
+    <li>
+        <a href="#" class="mb-collapsible-header">Item 1</a>
+        <ul class="mb-collapsible-content">
+            <li>Sub Item 1.1</li>
+            <li>Sub Item 1.2</li>
+            <li>Sub Item 1.3</li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" class="mb-collapsible-header">Item 2</a>
+        <ul class="mb-collapsible-content">
+            <li>Sub Item 2.1</li>
+            <li>Sub Item 2.2</li>
+            <li>Sub Item 2.3</li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" class="mb-collapsible-header">Item 3</a>
+        <ul class="mb-collapsible-content">
+            <li>Sub Item 3.1</li>
+            <li>Sub Item 3.2</li>
+            <li>Sub Item 3.3</li>
+        </ul>
+    </li>
+</ul>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+$(document).ready(function () {
+    $(".mb-collapsible-header").on("click", function (e) {
+        e.preventDefault();
+        
+        // Collapse all other lists
+        $(".mb-collapsible-content").slideUp();
+
+        // Open the clicked one, if it's not already open
+        if (!$(this).next(".mb-collapsible-content").is(":visible")) {
+            $(this).next(".mb-collapsible-content").slideDown();
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
